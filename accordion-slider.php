@@ -22,6 +22,7 @@ require_once( ACCORDION_SLIDER_DIR_PATH . 'public/class-panel-renderer.php' );
 require_once( ACCORDION_SLIDER_DIR_PATH . 'public/class-panel-renderer-factory.php' );
 require_once( ACCORDION_SLIDER_DIR_PATH . 'public/class-dynamic-panel-renderer.php' );
 require_once( ACCORDION_SLIDER_DIR_PATH . 'public/class-posts-panel-renderer.php' );
+require_once( ACCORDION_SLIDER_DIR_PATH . 'public/class-posts-ids-panel-renderer.php' );
 require_once( ACCORDION_SLIDER_DIR_PATH . 'public/class-gallery-panel-renderer.php' );
 require_once( ACCORDION_SLIDER_DIR_PATH . 'public/class-flickr-panel-renderer.php' );
 require_once( ACCORDION_SLIDER_DIR_PATH . 'public/class-layer-renderer.php' );

@@ -914,6 +914,7 @@ class BQW_Accordion_Slider_Settings {
 					'available_values' => array(
 						'custom' => __( 'Custom Content', 'accordion-slider' ),
 						'posts' => __( 'Content from posts', 'accordion-slider' ),
+						'posts_ids' => __( 'Content from defined posts IDs', 'accordion-slider' ),
 						'gallery' => __( 'Images from post\'s gallery', 'accordion-slider' ),
 						'flickr' => __( 'Flickr images', 'accordion-slider' )
 					),
@@ -972,6 +973,12 @@ class BQW_Accordion_Slider_Settings {
 						'ASC' => __( 'Ascending', 'accordion-slider' )
 					),
 					'description' => ''
+				),
+                'posts_ids' => array(
+					'label' => __( 'Post IDs', 'accordion-slider' ),
+					'type' => 'text',
+					'default_value' => '',
+					'description' => __('Comma separated list of post IDs.', 'accordion-slider' )
 				),
 				'posts_maximum' => array(
 					'label' => __( 'Limit', 'accordion-slider' ),

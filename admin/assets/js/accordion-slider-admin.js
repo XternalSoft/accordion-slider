@@ -110,6 +110,11 @@
 				that.addPostsPanels();
 			});
 
+			$( '.panel-type a[data-type="posts_ids"]' ).on( 'click', function( event ) {
+				event.preventDefault();
+				that.addPostsIDsPanels();
+			});
+
 			$( '.panel-type a[data-type="gallery"]' ).on( 'click', function( event ) {
 				event.preventDefault();
 				that.addGalleryPanels();
@@ -859,6 +864,59 @@
 						html: '',
 						settings: {
 							content_type: 'posts'
+						}
+					});
+
+					SettingsEditor.open( panelId );
+				}
+			});
+		},
+		/**
+		 * Add posts IDs panel.
+		 *
+		 * Add a posts IDs panel and pre-populate it with dynamic tags.
+		 *
+		 * @since 1.9.8
+		 */
+		addPostsIDsPanels: function() {
+			var that = this,
+				data =  [{
+					settings: {
+						content_type: 'posts_ids'
+					}
+				}];
+
+			$.ajax({
+				url: as_js_vars.ajaxurl,
+				type: 'post',
+				data: { action: 'accordion_slider_add_panels', data: JSON.stringify( data ) },
+				complete: function( data ) {
+					var panel = $( data.responseText ).appendTo( $( '.panels-container' ) ),
+						panelId = that.panelCounter;
+
+					that.initPanel( panel, {
+						background: {
+							background_source: '[as_image_src]',
+							background_alt: '[as_image_alt]',
+							background_link: '[as_link_url]'
+						},
+						layers: [
+							{
+								id: 1,
+								name: 'Layer 1',
+								type: 'paragraph',
+								text: '[as_title]',
+								settings: {
+									position: 'bottomLeft',
+									horizontal: '0',
+									vertical: '0',
+									preset_styles: ['as-black', 'as-padding']
+								}
+							}
+						],
+						html: '',
+						settings: {
+							content_type: 'posts_ids'
 						}
 					});
 

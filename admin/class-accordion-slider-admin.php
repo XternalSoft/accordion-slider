@@ -972,9 +972,19 @@ class BQW_Accordion_Slider_Admin {
 	 */
 	public function load_content_type_settings( $type, $panel_settings = NULL ) {
 		$panel_default_settings = BQW_Accordion_Slider_Settings::getPanelSettings();
-		$type = isset( $_POST['type'] ) && array_key_exists( $_POST['type'], $panel_default_settings['content_type']['available_values'] ) ? $_POST['type'] : $panel_default_settings['content_type']['default_value'];
-		$panel_settings = BQW_Accordion_Slider_Validation::validate_panel_settings( json_decode( stripslashes( $_POST['data'] ), true ) );
- 
+        if (isset($_POST['type'])) {
+            if (array_key_exists($_POST['type'], $panel_default_settings['content_type']['available_values'])) {
+                $type = $_POST['type'];
+            } else {
+                $type = $panel_default_settings['content_type']['default_value'];
+            }
+        }
+        if (isset($_POST['data'])) {
+            $panel_settings = BQW_Accordion_Slider_Validation::validate_panel_settings(
+                json_decode(stripslashes($_POST['data']), true)
+            );
+        }
+
 		if ( $type === 'posts' ) {
 			$post_names = $this->get_post_names();
 

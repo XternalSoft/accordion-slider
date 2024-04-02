@@ -40,6 +40,7 @@
                         <ul class="panel-type">
                             <li><a href="#" data-type="image"><?php _e( 'Image Panels', 'accordion-slider' ); ?></a></li>
                             <li><a href="#" data-type="posts"><?php _e( 'Posts Panels', 'accordion-slider' ); ?></a></li>
+                            <li><a href="#" data-type="posts_ids"><?php _e( 'Posts IDs Panels', 'accordion-slider' ); ?></a></li>
                             <li><a href="#" data-type="gallery"><?php _e( 'Gallery Panels', 'accordion-slider' ); ?></a></li>
                             <li><a href="#" data-type="flickr"><?php _e( 'Flickr Panels', 'accordion-slider' ); ?></a></li>
                             <li><a href="#" data-type="empty"><?php _e( 'Empty Panel', 'accordion-slider' ); ?></a></li>

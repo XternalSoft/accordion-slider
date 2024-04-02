@@ -18,6 +18,7 @@ class BQW_AS_Panel_Renderer_Factory {
 	protected static $registered_types = array(
 		'custom' => 'BQW_AS_Panel_Renderer',
 		'posts' => 'BQW_AS_Posts_Panel_Renderer',
+		'posts_ids' => 'BQW_AS_Posts_Ids_Panel_Renderer',
 		'gallery' => 'BQW_AS_Gallery_Panel_Renderer',
 		'flickr' => 'BQW_AS_Flickr_Panel_Renderer'
 	);

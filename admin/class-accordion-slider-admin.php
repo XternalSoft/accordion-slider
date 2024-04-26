@@ -941,52 +941,39 @@ class BQW_Accordion_Slider_Admin {
         die();
     }
 
-    /**
-     * AJAX call for displaying the setting fields associated
-     * with the current content type of the panel.
-     *
-     * It's called when the content type is changed manually
-     * in the panel's settings window
-     *
-     * @since 1.0.0
-     */
-    public function ajax_load_content_type_settings() {
-        $type = $_POST['type'];
-        $panel_settings = json_decode( stripslashes( $_POST['data'] ), true );
+	/**
+	 * AJAX call for displaying the setting fields associated 
+	 * with the current content type of the panel.
+	 *
+	 * It's called when the content type is changed manually 
+	 * in the panel's settings window
+	 *
+	 * @since 1.0.0
+	 */
+	public function ajax_load_content_type_settings() {
+		$panel_default_settings = BQW_Accordion_Slider_Settings::getPanelSettings();
+		$type = isset( $_POST['type'] ) && array_key_exists( $_POST['type'], $panel_default_settings['content_type']['available_values'] ) ? $_POST['type'] : $panel_default_settings['content_type']['default_value'];
+		$panel_settings = BQW_Accordion_Slider_Validation::validate_panel_settings( json_decode( stripslashes( $_POST['data'] ), true ) );
 
-        echo $this->load_content_type_settings( $type, $panel_settings );
+		echo $this->load_content_type_settings( $type, $panel_default_settings, $panel_settings );
 
         die();
     }
 
-    /**
-     * Return the setting fields associated with the content type.
-     *
-     * If the content type is set to 'posts', the names of the
-     * registered post types will be loaded.
-     *
-     * @since 1.0.0
-     *
-     * @param  string $type           The panel's content type.
-     * @param  array  $panel_settings The panel's settings.
-     */
-    public function load_content_type_settings( $type, $panel_settings = NULL ) {
-        $panel_default_settings = BQW_Accordion_Slider_Settings::getPanelSettings();
-        if (isset($_POST['type'])) {
-            if (array_key_exists($_POST['type'], $panel_default_settings['content_type']['available_values'])) {
-                $type = $_POST['type'];
-            } else {
-                $type = $panel_default_settings['content_type']['default_value'];
-            }
-        }
-        if (isset($_POST['data'])) {
-            $panel_settings = BQW_Accordion_Slider_Validation::validate_panel_settings(
-                json_decode(stripslashes($_POST['data']), true)
-            );
-        }
-
-        if ( $type === 'posts' ) {
-            $post_names = $this->get_post_names();
+	/**
+	 * Return the setting fields associated with the content type.
+	 *
+	 * If the content type is set to 'posts', the names of the
+	 * registered post types will be loaded.
+	 *
+	 * @since 1.0.0
+	 * 
+	 * @param  string $type           The panel's content type.
+	 * @param  array  $panel_settings The panel's settings.
+	 */
+	public function load_content_type_settings( $type, $panel_default_settings, $panel_settings = NULL ) {
+		if ( $type === 'posts' ) {
+			$post_names = $this->get_post_names();
 
             include( 'views/panel-settings/posts-panel-settings.php' );
         } elseif ($type === 'posts_ids') {
